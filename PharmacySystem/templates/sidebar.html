@@ -1,0 +1,40 @@
+<aside class="sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-logo">💊</div>
+        <div class="sidebar-title">PharmaCare</div>
+    </div>
+
+    <ul class="sidebar-menu">
+        <li>
+            <a href="/" class="{% if request.resolver_match.url_name == 'index' %}active{% endif %}">
+                <span class="sidebar-icon">📊</span>
+                Dashboard
+            </a>
+        </li>
+        <li>
+            <a href="/medicines" class="{% if request.resolver_match.url_name == 'medicines' %}active{% endif %}">
+                <span class="sidebar-icon">💊</span>
+                Medicines
+            </a>
+        </li>
+        <li>
+            <a href="/suppliers" class="{% if request.resolver_match.url_name == 'suppliers' %}active{% endif %}">
+                <span class="sidebar-icon">🏭</span>
+                Suppliers
+            </a>
+        </li>
+        <li>
+            <a href="/sales" class="{% if request.resolver_match.url_name == 'sales' %}active{% endif %}">
+                <span class="sidebar-icon">💰</span>
+                Sales
+            </a>
+        </li>
+    </ul>
+
+    <div class="logout-btn">
+        <a href="{% url 'logout' %}">
+            <span class="sidebar-icon">🚪</span>
+            Logout
+        </a>
+    </div>
+</aside>

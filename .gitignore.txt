@@ -1,0 +1,14 @@
+# Django stuff:
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
+media
+
+# Virtual Environment folder (غير اسم المجلد إذا كان مختلفاً عندك)
+venv/
+env/
+myvenv/
+.env

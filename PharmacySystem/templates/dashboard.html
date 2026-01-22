@@ -1,0 +1,120 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Smart Pharmacy Management System</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+    <div class="dashboard-container">
+
+        <main class="main-content">
+            <div class="page-header">
+                <h1>Dashboard</h1>
+                <p>Welcome to your pharmacy management system</p>
+            </div>
+
+            <!-- Summary Cards -->
+            <div class="dashboard-grid">
+                <!-- Total Drugs Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Total Drugs</div>
+                            <div class="card-value" id="totalDrugs">{{med}}</div>
+                        </div>
+                        <div class="card-icon">💊</div>
+                    </div>
+                    <div class="card-subtitle">Active medicines in inventory</div>
+                </div>
+
+                <!-- Low Stock Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Low Stock</div>
+                            <div class="card-value" id="lowStock">{{ low_stock_count }}</div>
+                        </div>
+                        <div class="card-icon">⚠️</div>
+                    </div>
+                    <div class="card-subtitle">Items below minimum threshold</div>
+                </div>
+
+                <!-- Total Sales Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Total Sales</div>
+                            <div class="card-value" id="totalSales">${{ total_sales }}</div>
+                        </div>
+                        <div class="card-icon">💰</div>
+                    </div>
+                    <div class="card-subtitle">Revenue this month</div>
+                </div>
+
+                <!-- Active Suppliers Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Suppliers</div>
+                            <div class="card-value" id="totalSuppliers">{{su}}</div>
+                        </div>
+                        <div class="card-icon">🏭</div>
+                    </div>
+                    <div class="card-subtitle">Active pharmaceutical suppliers</div>
+                </div>
+            </div>
+
+            <!-- Recent Sales Table -->
+            <div class="table-container">
+                <div class="table-header">
+                    <h2 class="table-title">Recent Transactions</h2>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Transaction ID</th>
+                            <th>Medicine</th>
+                            <th>Quantity</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recentSalesBody">
+
+                        {% for a in all_sales %}
+                        <tr>
+                            <td>{{a.Number}}</td>
+                            <td>{{a.medicine}}</td>
+                            <td>{{a.Sold}}</td>
+                            <td>{{a.Total}}</td>
+                            <td>{{a.Date}}</td>
+                            <td><span class="status-badge status-active">Completed</span></td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="no-data">No sales data available. Start by adding medicines and
+                                recording sales.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    <script src="{% static 'script.js' %}"></script>
+</body>
+
+</html>
+
+{% endblock %}
